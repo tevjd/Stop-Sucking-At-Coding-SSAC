@@ -45,3 +45,26 @@ In tuple the order is important and it allows duplication of the same data.
 When we return multiple elements in a function, the result is a tuple of those elements. 
 We can use two methods on tuples: `tuple.count()` and `tuple.index()`. 
 
+### Open and Write in a file
+
+There is different approach to do that. You can use the `open` function like this: 
+```
+myfile = open()
+myfile.close()
+```
+Note that we need to properly close the file here. If we want to be managed automatically we can use `with`: `with open() as myfile:`. This is safer because in case of an error occuring the with method will automatically close the file properly. 
+
+### F-string ? 
+
+In Python there is different ways to construct a string. But if we want to directly include some variable, integer or others strings a simple solution is to use something called a `f-string` = Formated string. This is a powerful and readable way to format strings in Python (introduced in Python 3.6). 
+
+Example of use: 
+```
+print(f"Hello, my name is {name} and I'm {age} years old.")
+print(f"Pi rounded to 2 decimal places: {pi:.2f}")
+```
+In the last expression we tell the format some specific rules. The `.` = decimal point indicator and the `2` means we want to show exaclty 2 digits after the decimal point. The `f` means we want to use the format as a floating-point = decimal number. 
+
+### SVG = Scalable Vector Graphics
+
+This is a web standard for creating graphics using code. It's useful for logos, icons, simple illustrations and interactive graphics. It is using mathematical descriptions of shapes and so it scales perfectly at any size. 
