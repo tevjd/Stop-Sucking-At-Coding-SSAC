@@ -46,15 +46,13 @@ def generate_circle(circle, radius):
     return f"<circle cx='{circle[0]}' cy='{circle[1]}' r='{radius}'/>\n"
 
 
-# À implémenter dans 'TP3. Tortue Logo'
-def genere_segment(dep, arr):
+def generate_line(start, end, color, width):
     """
-    Retourne la chaîne de caractères correspondant à un élément SVG représentant
-    un segment. Ce segment relie les points dep et arr qui sont tous les deux
-    des tuples de deux nombres.
+    Return the svg tag to draw a line. This line is a link between the start and end point. 
+    A point is a tuple with two integer. 
     """
-    # TODO
-    ...
+    return f"<line x1='{start[0]}' y1='{start[1]}' x2='{end[0]}' y2='{end[1]}' " \
+         f" style='stroke:{color};stroke-width:{width}' />"
 
 
 # À implémenter dans `TP Optionnels Échiquier`
