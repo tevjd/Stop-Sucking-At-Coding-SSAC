@@ -24,7 +24,9 @@ There is a VS Code extension for Pylint so we can correct our code in real-tiome
 
 Here are some functions which can help you when you program something. 
 
-`input` = get the data from the stdint (standard input) = the keyboard in our case. 
+`input()` = get the data from the stdint (standard input) = the keyboard in our case.
+`ord()` = take an ASCII char and return the number associated.
+`chr()` = take a number and return the ASCII char associated. 
 
 ### What is a module? 
 
@@ -68,3 +70,14 @@ In the last expression we tell the format some specific rules. The `.` = decimal
 ### SVG = Scalable Vector Graphics
 
 This is a web standard for creating graphics using code. It's useful for logos, icons, simple illustrations and interactive graphics. It is using mathematical descriptions of shapes and so it scales perfectly at any size. 
+
+### I have a bug...
+
+When you will start program more and more complex projects, you will have something called bugs. A bug is simply when your program is doing something that you didn't expected. For example, a behavior or a variable that is not what you expected when you program it. Sometimes bugs are easy to correct, we call this a fix. But sometimes the story isn't the same. 
+
+Hopefully there is a very nice tool called a `debugger`. This kind of program helps you execute your code step by step and understand what is going on by displaying your variable content or more. A simple debugger in python is `pdb`, here is a link to the documentation: https://docs.python.org/3/library/pdb.html. And you can use it like that: 
+
+```
+python3 -m pdb file.py
+In that case -m dpb tell to the interpreter to find the module named pdb and use it like a script. In that case file.py is an argument for the debugger. 
+```
