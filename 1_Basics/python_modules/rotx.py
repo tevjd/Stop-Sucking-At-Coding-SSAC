@@ -26,4 +26,3 @@ def rot(letter, shift):
 def rot13(letter):
     """Same as before but here we have a shift of 13"""
     return rot(letter, 13)
-
