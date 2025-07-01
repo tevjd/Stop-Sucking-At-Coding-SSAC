@@ -5,9 +5,10 @@
 # The different players are coded in python modules.
 # The human player only ask the stdint to play.
 # The pc_player play automatically and there is no special strategy.
+import sys
 import human_player
 import pc_player
-import smart_pc_player
+#import smart_pc_player
 
 
 def get_the_char_to_display(symbol):
@@ -64,83 +65,115 @@ def display_board(board):
     # Print the below line
     print(delimitation)
 
+def winning_chek(board, symbol):
+    """
+    Function to check if the current player won the game
+    """
 
-def joue_coup(joueur, joueur_num, cases, symbol):
+    for i in range(0, 9, 3):
+        if board[i] == board[i+1] == board[i+2] == symbol:
+            return True
+
+    for i in range(0, 3):
+        if board[i] == board[i+3] == board[i+6] == symbol:
+            return True
+
+    if board[0] == board[4] == board[8] == symbol:
+        return True
+    elif board[2] == board[4] == board[6] == symbol:
+        return True
+
+    return False
+
+
+def play_a_move(player, player_num, board, symbol):
     """Joue un coup.
 
     Cette fonction effectue les opérations suivantes tout en affichant
     ce qu'il se passe sur la sortie standard :
-      - affiche le plateau représenté par cases
-      - utilise le module joueur pour savoir quel coup doit être joué
+      - affiche le plateau représenté par board
+      - utilise le module player pour savoir quel coup doit être joué
       - met à jour le plateau de jeu avec ce coup
-      - affiche le plateau et le numéro du joueur gagnant si c'est gagné
+      - affiche le plateau et le numéro du player gagnant si c'est gagné
         puis quitte le programme
       - renvoie le nouveau plateau
 
-    précondition : joueur est un module avec une fonction
-                   joue_coup(cases, symbol) qui renvoie le
+    précondition : player est un module avec une fonction
+                   play_a_move(board, symbol) qui renvoie le
                    numéro d'une case précédemment inoccupée.
-    précondition : joueur_num est soit l'entier 1 soit l'entier 2
-    précondition : cases est une list de 9 éléments
+    précondition : player_num est soit l'entier 1 soit l'entier 2
+    précondition : board est une list de 9 éléments
     précondition : symbol est soit "x" soit "o"
 
     """
-    # TODO
-    ...
+
+    # First we display the board
+    display_board(board)
+
+    # We play a move according to the player and the symbol
+    current_move = player.play_a_move(board, symbol)
+
+    # Update the board
+    board[current_move] = symbol
+
+    # Check if there is a win
+    is_winning = winning_chek(board, symbol)
+
+    if is_winning:
+        display_board(board)
+        print(f"The player number {player_num} won the game!")
+        sys.exit(0)
+    else:
+        return board
 
 
+def play_game():
+    """Play tic-tac-toe game"""
 
-
-def joue_partie():
-    """Joue une partie complète de morpion"""
-
-    # Initialisation des deux joueurs en demandant à l'utilisateur
-    # Parenthèses nécessaires pour "spliter un string literal"
-    message_choix_joueur = (
-        "Veuillez choisir le type du joueur {} en tapant\n"
-        "  0 pour humain\n"
-        "  1 pour un ordinateur\n"
-        "  2 pour un ordinateur très malin\n"
-        "  entrez votre choix : "
+    # Init the game by asking the user to chose the player
+    # We need the '{}' because of the splinting
+    message_chose_player = (
+        "Please give the type of player {} you want\n"
+        "   0 for human\n"
+        "   1 for simple pc\n"
+        "   precise the number :"
     )
 
-    print(message_choix_joueur.format(1), end="")
+    print(message_chose_player.format(1), end="")
     type1 = int(input())
-    print(message_choix_joueur.format(2), end="")
+    print(message_chose_player.format(2), end="")
     type2 = int(input())
-    joueur1 = (
+    player1 = (
         human_player
         if type1 == 0
-        else (pc_player if type1 == 1 else smart_pc_player)
+        else (pc_player)
     )
-    joueur2 = (
+    player2 = (
         human_player
         if type2 == 0
-        else (pc_player if type2 == 1 else smart_pc_player)
+        else (pc_player)
     )
     print()
 
-    # Initialisation et affichage du plateau vide
-    # Une case vide est représentée par son numéro,
-    # utilisé par le joueur humain pour indiquer
-    # quelle case il joue.
-    cases = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+    # Init and display the board.
+    # An empty place is giving by its number.
+    board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
 
-    # Joue 9 coups au maximum
-    joue_coup(joueur1, 1, cases, "x")
-    joue_coup(joueur2, 2, cases, "o")
-    joue_coup(joueur1, 1, cases, "x")
-    joue_coup(joueur2, 2, cases, "o")
-    joue_coup(joueur1, 1, cases, "x")
-    joue_coup(joueur2, 2, cases, "o")
-    joue_coup(joueur1, 1, cases, "x")
-    joue_coup(joueur2, 2, cases, "o")
-    joue_coup(joueur1, 1, cases, "x")
+    # Play 9 times at max
+    play_a_move(player1, 1, board, "x")
+    play_a_move(player2, 2, board, "o")
+    play_a_move(player1, 1, board, "x")
+    play_a_move(player2, 2, board, "o")
+    play_a_move(player1, 1, board, "x")
+    play_a_move(player2, 2, board, "o")
+    play_a_move(player1, 1, board, "x")
+    play_a_move(player2, 2, board, "o")
+    play_a_move(player1, 1, board, "x")
 
-    # Si on arrive là, il y a égalité
-    print("Match nul !")
+    # If we are here it's a draw
+    print("Draw !")
 
 
 if __name__ == "__main__":
-    #joue_partie()
-    display_board(["0", "1", "2", "x", "4", "5", "o", "7", "8"])
+    play_game()
+    #display_board(["0", "1", "2", "x", "4", "5", "o", "7", "8"])
