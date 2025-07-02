@@ -16,4 +16,23 @@ def factorial():
 
     print(f"The result is {result}")
 
-factorial()
+def gcd():
+    """Compute the greatest common divisor"""
+
+    val1 = int(input("Give us the first value: \n"))
+    if val1 <= 0:
+        raise ValueError("The value 1 need to be > 0 !")
+
+    val2 = int(input("Give us the second value: \n"))
+    if val2 <= 0:
+        raise ValueError("The value 2 need to be > 0 !")
+
+    while val1 != val2:
+        if val1 < val2 :
+            val2 -= val1
+        else:
+            val1 -= val2
+
+    print("The result of the GCD is ", val1)
+
+gcd()
