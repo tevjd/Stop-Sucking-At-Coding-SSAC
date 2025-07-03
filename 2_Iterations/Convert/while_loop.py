@@ -35,4 +35,36 @@ def gcd():
 
     print("The result of the GCD is ", val1)
 
-gcd()
+a_string = "123"
+a_list = [1, 2, 3]
+a_tuple = (1, 2, 3)
+a_2D_tuple = ([1, 2, 3], [4, 5, 6])
+a_3D_tuple = [[[1, 2], [3, 4]], [[5, 6]]]
+
+def go_through(data_structure):
+    """Function that will print all the element of the data structure"""
+
+    print(f"Elements of the structure {data_structure}")
+    stack = [data_structure]
+
+    while stack :
+        elem = stack.pop()
+
+        if isinstance(elem, str):
+            for letter in elem:
+                print(letter)
+
+        elif isinstance(elem, (list, tuple)):
+            i = len(elem) - 1
+            while i >= 0 :
+                stack.append(elem[i])
+                i -= 1
+
+        else:
+            print(elem)
+
+go_through(a_string)
+go_through(a_list)
+go_through(a_tuple)
+go_through(a_2D_tuple)
+go_through(a_3D_tuple)
