@@ -11,11 +11,13 @@ def main():
 
     min_radius = min(height*0.2, wide*0.2)
 
-    center1_x, center1_y = randint(min_radius, wide-min_radius), randint(min_radius, height-min_radius)
+    center1_x, center1_y = randint(min_radius, wide-min_radius), \
+        randint(min_radius, height-min_radius)
     max_radius1 = min(center1_x, wide-center1_x, center1_y, height-center1_y)
     radius1 = randint(min_radius, max_radius1)
 
-    center2_x, center2_y = randint(min_radius, wide-min_radius), randint(min_radius, height-min_radius)
+    center2_x, center2_y = randint(min_radius, wide-min_radius), \
+        randint(min_radius, height-min_radius)
     max_radius2 = min(center2_x, wide-center2_x, center2_y, height-center2_y)
     radius2 = randint(min_radius, max_radius2)
 
