@@ -4,7 +4,7 @@
 import sys
 from math import pi
 import svg
-import drawing
+import draw
 from triangle import random_triangle, turn_triangle_around
 
 def generate_image(number_of_triangle):
@@ -13,18 +13,18 @@ def generate_image(number_of_triangle):
     It generates the SVG code on the sysout
     """
     wide, height = 800.0, 600.0
-    print(svg.generate_start_tag_image(wide, height))    
-    center = (height/2, wide/2)
+    print(svg.generate_start_tag_image(wide, height))
+    center = (wide/2, height/2)
 
     for _ in range(number_of_triangle):
         #we generate the first triangle in the right below quarter
         triangle = random_triangle((wide/2, wide), (height/2, height))
-        color = drawing.random_color()
+        color = draw.random_color()
         #we turn the triangle to dipslay it height times
-        for round in range(8):
-            angle = pi / 4 * round
+        for i in range(8):
+            angle = pi / 4 * i
             turned_triangle = turn_triangle_around(triangle, center, angle)
-            drawing.display_triangle(turned_triangle, color)
+            draw.display_triangle(turned_triangle, color)
 
     print(svg.generate_end_tag_image())
 
