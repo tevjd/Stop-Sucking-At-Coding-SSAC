@@ -63,30 +63,21 @@ def genere_rectangle(top_left, width, height):
     # TODO
     ...
 
-
-# À implémenter dans `TP7. Kaléidoscope`
-def genere_polygone(points):
+def generate_polygon(points):
     """
-    Retourne la chaîne de caractères correspondant à un élément SVG
-    représentant un polygone. `points` est un tableau de points qui
-    sont eux mêmes des tuples de deux nombres.
+    Return the svg code to generate a polygone. 
+    Points is a table of points where a point is a tuple of 2 elements
     """
-    # TODO
-    ...
+    points_str = " ".join([f"{x},{y}" for x, y in points])
+    return f"<polygon points='{points_str}' />"
 
 
-# À implémenter dans `TP7. Kaléidoscope`
-def genere_balise_debut_groupe_transp(niveau_opacite):
+def generate_tag_start_group_transp(opacity):
     """
-    Retourne la chaîne de caractères correspondant à une balise ouvrant un
-    groupe d'éléments qui, dans son ensemble, sera partiellement transparent.
-    Les éléments qui composent le groupe se masquent les uns les autres dans
-    l'ordre d'apparition (ils ne sont pas transparents entre eux).
-    `niveau_opacite` doit être un nombre entre 0 et 1. Ce groupe doit être
-    refermé de la même manière que les groupes définissant un style.
+    Return the svg code to create a specific opacity for a group. 
+    Opacity is a group between 0 and 1. 
     """
-    # TODO
-    ...
+    return f"<g opacity='{opacity}'>"
 
 
 # À implémenter dans `TP8. Plateau`
